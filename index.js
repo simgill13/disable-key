@@ -39,6 +39,7 @@ class App extends Component {
       <div>
         <button onClick={() => this.addhtml()}> add html textarea </button>
         <div id="test" />
+      
       </div>
     );
   }
