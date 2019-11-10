@@ -39,11 +39,13 @@ class App extends Component {
     this.inner();
   };
 
-  inner = () => {this.findChildNode(this.txtarearef.current, 'TEXTAREA')};
+  inner = () => {
+    this.findChildNode(this.txtarearef.current, "TEXTAREA");
+  };
 
-  findChildNode = (node,target) => {
+  findChildNode = (node, target) => {
     for (let i = 0; i < node.children.length; i++) {
-       const { tagName } = node.children[i]
+      const { tagName } = node.children[i];
       if (tagName === target) {
         const textareaEl = node.children[i];
         textareaEl.addEventListener(
@@ -51,7 +53,7 @@ class App extends Component {
           e => this.handelKeydown(e),
           true
         );
-        return
+        return;
       }
       this.findChildNode(node.children[i], target);
     }
