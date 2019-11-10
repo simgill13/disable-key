@@ -39,9 +39,7 @@ class App extends Component {
     this.inner();
   };
 
-  inner = () => {
-    this.findChildNode(this.txtarearef.current, 'TEXTAREA');
-  };
+  inner = () => {this.findChildNode(this.txtarearef.current, 'TEXTAREA')};
 
   findChildNode = (node,target) => {
     for (let i = 0; i < node.children.length; i++) {
