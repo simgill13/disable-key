@@ -28,7 +28,7 @@ class App extends Component {
         <div> 
           <textarea  id='text-area'> </textarea>
           <div>
-          <textarea  id='text-area'> </textarea>
+         
             <p>     
             </p>
            </div>
@@ -47,17 +47,15 @@ class App extends Component {
     for (let i = 0; i < node.children.length; i++) {
       const { tagName } = node.children[i];
       if (tagName === target) {
-        const textareaEl = node.children[i];
-        textareaEl.addEventListener(
-          "keydown",
-          e => this.handelKeydown(e),
-          true
-        );
-        return;
+        return this.addEventListener(node.children[i]);
       }
       this.findChildNode(node.children[i], target);
     }
     return node;
+  };
+
+  addEventListener = textareaEl => {
+    textareaEl.addEventListener("keydown", e => this.handelKeydown(e), true);
   };
 
   handelKeydown = e => e.keyCode === 13 && e.preventDefault();
@@ -65,7 +63,6 @@ class App extends Component {
   render() {
     return (
       <>
-        <textarea />
         <button onClick={() => this.addhtml()}> add html textarea </button>
         <div ref={this.txtarearef} id="test" />
       </>
