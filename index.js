@@ -65,6 +65,7 @@ class App extends Component {
   render() {
     return (
       <>
+        <textarea/>
         <button onClick={() => this.addhtml()}> add html textarea </button>
         <div ref={this.txtarearef} id="test" />
       </>
