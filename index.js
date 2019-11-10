@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { render } from "react-dom";
+import { render, findDOMNode } from "react-dom";
 import Hello from "./Hello";
 import "./style.css";
 
@@ -13,23 +13,40 @@ class App extends Component {
   }
 
   componentWillUnmount() {
-    const textarea = document.getElementById("text-area");
-    textarea.removeEventListener("keydown", e => this.handelKeydown(e), true);
+    this.txtarearef.removeEventListener("keydown", e => this.handelKeydown(e), true);
   }
 
   addhtml = () => {
     const html = `
     <div> 
       enter key is disabled
-      <textarea  ref="${this.txtarearef}" id='text-area'> </textarea>
+      <div> 
+        <div> 
+          <textarea  id='text-area'> </textarea>
+        </div>
+      </div>
     </div`;
     document.getElementById("test").innerHTML += html;
     this.inner();
   };
 
   inner = () => {
-    const textarea = document.getElementById("text-area");
-    textarea.addEventListener("keydown", e => this.handelKeydown(e), true);
+    this.findChildNode(this.txtarearef.current, 0);
+  };
+
+  findChildNode = (node, level) => {
+    for (var i = 0; i < node.children.length; i++) {
+      if (node.children[i].tagName === "TEXTAREA") {
+        const textareaEl = node.children[i];
+        textareaEl.addEventListener(
+          "keydown",
+          e => this.handelKeydown(e),
+          true
+        );
+      }
+      this.findChildNode(node.children[i], level);
+    }
+    return node;
   };
 
   handelKeydown = e => e.keyCode === 13 && e.preventDefault();
@@ -38,8 +55,7 @@ class App extends Component {
     return (
       <div>
         <button onClick={() => this.addhtml()}> add html textarea </button>
-        <div id="test" />
-      
+        <div ref={this.txtarearef} id="test" />
       </div>
     );
   }
