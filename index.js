@@ -27,6 +27,11 @@ class App extends Component {
       <div> 
         <div> 
           <textarea  id='text-area'> </textarea>
+          <div>
+          <textarea  id='text-area'> </textarea>
+            <p>     
+            </p>
+           </div>
         </div>
       </div>
     </div`;
@@ -48,6 +53,7 @@ class App extends Component {
           e => this.handelKeydown(e),
           true
         );
+        return
       }
       this.findChildNode(node.children[i], target);
     }
