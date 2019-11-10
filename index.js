@@ -35,7 +35,7 @@ class App extends Component {
   };
 
   findChildNode = (node, level) => {
-    for (var i = 0; i < node.children.length; i++) {
+    for (let i = 0; i < node.children.length; i++) {
       if (node.children[i].tagName === "TEXTAREA") {
         const textareaEl = node.children[i];
         textareaEl.addEventListener(
