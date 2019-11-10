@@ -13,7 +13,11 @@ class App extends Component {
   }
 
   componentWillUnmount() {
-    this.txtarearef.removeEventListener("keydown", e => this.handelKeydown(e), true);
+    this.txtarearef.removeEventListener(
+      "keydown",
+      e => this.handelKeydown(e),
+      true
+    );
   }
 
   addhtml = () => {
